@@ -1,0 +1,28 @@
+// Définir la date et l'heure de fin
+var countDownDate = new Date("Mar 22, 2024 15:49:40").getTime();
+
+// Mettre à jour le compte à rebours toutes les secondes
+var countdownFunction = setInterval(function() {
+
+    // Obtenir la date et l'heure actuelles
+    var now = new Date().getTime();
+
+    // Trouver la distance entre maintenant et la date de fin
+    var distance = countDownDate - now;
+
+    // Calculer le temps pour les jours, heures, minutes et secondes
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Afficher le résultat dans l'élément avec l'id="timer"
+    document.getElementById("timer").innerHTML = days + "j " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // Si le compte à rebours est terminé, écrire du texte 
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("timer").innerHTML = "LA GUERRE COMMENCE";
+    }
+}, 1000);
